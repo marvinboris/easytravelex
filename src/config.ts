@@ -4,6 +4,6 @@ import { config } from 'dotenv';
 config();
 
 export const mongodbUri =
-  process.env.MONGODB_URI || 'mongodb://localhost:27017/easytravelex';
+  process.env.MONGODB_URI || 'mongodb://0.0.0.0:27017/easytravelex';
 
 export const port = process.env.PORT || 3000;

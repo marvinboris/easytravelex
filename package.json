@@ -1,6 +1,6 @@
 {
   "name": "easytravelex",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "dist/app.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "test:coverage": "npm run test -- --coverage --coverageReporters=\"json-summary\"",
     "test:badges": "npm run test:coverage && jest-badge-generator",
     "lint": "eslint ./src --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install",
     "update-coverage": "ts-node update-readme-coverage.ts",
     "prepack": "npm run build",
