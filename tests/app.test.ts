@@ -158,6 +158,15 @@ describe('Test the visa application path', () => {
     expect(response.statusCode).toBe(201);
   });
 
+  test('It should respond to the GET method', async () => {
+    const visaApplication = await VisaApplication.create(mockVisaApplication);
+    const response = await request(app).get(
+      `/api/visa-applications/${visaApplication._id}`,
+    );
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('_id', visaApplication._id.toString());
+  });
+
   test('It should respond to the PUT method', async () => {
     const visaApplication = await VisaApplication.create(mockVisaApplication);
     const response = await request(app)
@@ -190,6 +199,15 @@ describe('Test the tour application path', () => {
     expect(response.statusCode).toBe(201);
   });
 
+  test('It should respond to the GET method', async () => {
+    const tourApplication = await TourApplication.create(mockTourApplication);
+    const response = await request(app).get(
+      `/api/tour-applications/${tourApplication._id}`,
+    );
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('_id', tourApplication._id.toString());
+  });
+
   test('It should respond to the PUT method', async () => {
     const tourApplication = await TourApplication.create(mockTourApplication);
     const response = await request(app)
@@ -220,6 +238,20 @@ describe('Test the custom package application path', () => {
       .post('/api/custom-package-applications')
       .send(mockCustomPackageApplication);
     expect(response.statusCode).toBe(201);
+  });
+
+  test('It should respond to the GET method', async () => {
+    const customPackageApplication = await CustomPackageApplication.create(
+      mockCustomPackageApplication,
+    );
+    const response = await request(app).get(
+      `/api/custom-package-applications/${customPackageApplication._id}`,
+    );
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty(
+      '_id',
+      customPackageApplication._id.toString(),
+    );
   });
 
   test('It should respond to the PUT method', async () => {
@@ -256,6 +288,13 @@ describe('Test the expense path', () => {
     expect(response.statusCode).toBe(201);
   });
 
+  test('It should respond to the GET method', async () => {
+    const expense = await Expense.create(mockExpense);
+    const response = await request(app).get(`/api/expenses/${expense._id}`);
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('_id', expense._id.toString());
+  });
+
   test('It should respond to the PUT method', async () => {
     const expense = await Expense.create(mockExpense);
     const response = await request(app)
@@ -282,6 +321,13 @@ describe('Test the user path', () => {
   test('It should respond to the POST method', async () => {
     const response = await request(app).post('/api/users').send(mockUser);
     expect(response.statusCode).toBe(201);
+  });
+
+  test('It should respond to the GET method', async () => {
+    const user = await User.create(mockUser);
+    const response = await request(app).get(`/api/users/${user._id}`);
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('_id', user._id.toString());
   });
 
   test('It should respond to the PUT method', async () => {
