@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const expenseSchema = new mongoose.Schema({
   type: { type: String, required: true },
@@ -8,4 +8,4 @@ const expenseSchema = new mongoose.Schema({
   status: { type: String, required: true },
 });
 
-export const Expense = mongoose.model("Expense", expenseSchema);
+export const Expense = mongoose.model('Expense', expenseSchema);

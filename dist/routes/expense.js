@@ -1,9 +1,9 @@
-import { Router, Request, Response } from 'express';
-
-import { Expense } from '../models/expense';
-
-export const expenseRouter = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.expenseRouter = void 0;
+const express_1 = require("express");
+const expense_1 = require("../models/expense");
+exports.expenseRouter = (0, express_1.Router)();
 /**
  * @swagger
  * /expenses:
@@ -21,15 +21,15 @@ export const expenseRouter = Router();
  *       500:
  *         description: Internal server error
  */
-expenseRouter.get('/', async (req: Request, res: Response) => {
-  try {
-    const expenses = await Expense.find();
-    res.json(expenses);
-  } catch (error) {
-    res.status(500).json({ message: (error as Error).message });
-  }
+exports.expenseRouter.get('/', async (req, res) => {
+    try {
+        const expenses = await expense_1.Expense.find();
+        res.json(expenses);
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
-
 /**
  * @swagger
  * /expenses/{id}:
@@ -54,18 +54,18 @@ expenseRouter.get('/', async (req: Request, res: Response) => {
  *       500:
  *         description: Internal server error
  */
-expenseRouter.get('/:id', async (req: Request, res: Response) => {
-  try {
-    const expense = await Expense.findById(req.params.id);
-    if (!expense) {
-      return res.status(404).json({ message: 'Expense not found' });
+exports.expenseRouter.get('/:id', async (req, res) => {
+    try {
+        const expense = await expense_1.Expense.findById(req.params.id);
+        if (!expense) {
+            return res.status(404).json({ message: 'Expense not found' });
+        }
+        res.json(expense);
     }
-    res.json(expense);
-  } catch (error) {
-    res.status(500).json({ message: (error as Error).message });
-  }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
-
 /**
  * @swagger
  * /expenses:
@@ -89,16 +89,16 @@ expenseRouter.get('/:id', async (req: Request, res: Response) => {
  *       500:
  *         description: Internal server error
  */
-expenseRouter.post('/', async (req: Request, res: Response) => {
-  const expense = new Expense(req.body);
-  try {
-    const newTour = await expense.save();
-    res.status(201).json(newTour);
-  } catch (error) {
-    res.status(400).json({ message: (error as Error).message });
-  }
+exports.expenseRouter.post('/', async (req, res) => {
+    const expense = new expense_1.Expense(req.body);
+    try {
+        const newTour = await expense.save();
+        res.status(201).json(newTour);
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
-
 /**
  * @swagger
  * /expenses/{id}:
@@ -131,20 +131,20 @@ expenseRouter.post('/', async (req: Request, res: Response) => {
  *       500:
  *         description: Internal server error
  */
-expenseRouter.put('/:id', async (req: Request, res: Response) => {
-  try {
-    const expense = await Expense.findById(req.params.id);
-    if (!expense) {
-      return res.status(404).json({ message: 'Expense not found' });
+exports.expenseRouter.put('/:id', async (req, res) => {
+    try {
+        const expense = await expense_1.Expense.findById(req.params.id);
+        if (!expense) {
+            return res.status(404).json({ message: 'Expense not found' });
+        }
+        expense.set(req.body);
+        const updatedTour = await expense.save();
+        res.json(updatedTour);
     }
-    expense.set(req.body);
-    const updatedTour = await expense.save();
-    res.json(updatedTour);
-  } catch (error) {
-    res.status(400).json({ message: (error as Error).message });
-  }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
-
 /**
  * @swagger
  * /expenses/{id}:
@@ -165,15 +165,16 @@ expenseRouter.put('/:id', async (req: Request, res: Response) => {
  *       500:
  *         description: Internal server error
  */
-expenseRouter.delete('/:id', async (req: Request, res: Response) => {
-  try {
-    const expense = await Expense.findById(req.params.id);
-    if (!expense) {
-      return res.status(404).json({ message: 'Expense not found' });
+exports.expenseRouter.delete('/:id', async (req, res) => {
+    try {
+        const expense = await expense_1.Expense.findById(req.params.id);
+        if (!expense) {
+            return res.status(404).json({ message: 'Expense not found' });
+        }
+        await expense.deleteOne();
+        res.status(204).json({ message: 'Expense deleted' });
     }
-    await expense.deleteOne();
-    res.status(204).json({ message: 'Expense deleted' });
-  } catch (error) {
-    res.status(500).json({ message: (error as Error).message });
-  }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });

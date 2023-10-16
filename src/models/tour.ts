@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const tourSchema = new mongoose.Schema({
   persons: { type: Number, required: true },
@@ -13,4 +13,4 @@ const tourSchema = new mongoose.Schema({
   photo: { type: String, required: true },
 });
 
-export const Tour = mongoose.model("Tour", tourSchema);
+export const Tour = mongoose.model('Tour', tourSchema);

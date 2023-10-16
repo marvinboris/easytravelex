@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const visaApplicationSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -17,6 +17,6 @@ const visaApplicationSchema = new mongoose.Schema({
 });
 
 export const VisaApplication = mongoose.model(
-  "VisaApplication",
-  visaApplicationSchema
+  'VisaApplication',
+  visaApplicationSchema,
 );

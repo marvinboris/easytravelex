@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const relocationSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -7,4 +7,4 @@ const relocationSchema = new mongoose.Schema({
   details: { type: String, required: true },
 });
 
-export const Relocation = mongoose.model("Relocation", relocationSchema);
+export const Relocation = mongoose.model('Relocation', relocationSchema);

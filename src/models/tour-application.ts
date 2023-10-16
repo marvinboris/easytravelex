@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const tourApplicationSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -12,6 +12,6 @@ const tourApplicationSchema = new mongoose.Schema({
 });
 
 export const TourApplication = mongoose.model(
-  "TourApplication",
-  tourApplicationSchema
+  'TourApplication',
+  tourApplicationSchema,
 );

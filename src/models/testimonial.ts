@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const testimonialSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -8,4 +8,4 @@ const testimonialSchema = new mongoose.Schema({
   text: { type: String, required: true },
 });
 
-export const Testimonial = mongoose.model("Testimonial", testimonialSchema);
+export const Testimonial = mongoose.model('Testimonial', testimonialSchema);
